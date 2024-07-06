@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Population Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Population data will be dynamically added here -->
+    </div>
+    <script>
+      const fetchData = async () => {
+        try {
+          const res = await fetch("./population.json");
+          const jsonObj = await res.json();
+          const populationData = jsonObj.population;
+
+          const container = document.querySelector(".container");
+
+          populationData.forEach((population) => {
+            const headerContainer = document.createElement("div");
+            headerContainer.classList.add("header-container");
+
+            const byTypeContainer = document.createElement("div");
+            byTypeContainer.classList.add("by-type-container");
+
+            const h4Element = document.createElement("h4");
+            h4Element.textContent = `${(
+              population.total / 1000000
+            ).toLocaleString()}M`;
+
+            const h5Element = document.createElement("h5");
+            h5Element.textContent = population.type.toUpperCase();
+
+            headerContainer.appendChild(h4Element);
+            headerContainer.appendChild(h5Element);
+
+            const cardContainer = document.createElement("div");
+            cardContainer.classList.add("card-container");
+
+            const byCountryHeader = document.createElement("h5");
+            byCountryHeader.textContent = "By country";
+            cardContainer.appendChild(byCountryHeader);
+
+            const byCountryContainer = document.createElement("div");
+            byCountryContainer.classList.add("by-country-container");
+
+            let rowContainer = document.createElement("div");
+            rowContainer.classList.add("row-container");
+            let counter = 0;
+
+            population.byCountries.forEach((country) => {
+              if (counter === 2) {
+                byCountryContainer.appendChild(rowContainer);
+                rowContainer = document.createElement("div");
+                rowContainer.classList.add("row-container");
+                counter = 0;
+              }
+
+              const countryContainer = document.createElement("div");
+              countryContainer.classList.add("country-container");
+              countryContainer.innerHTML = `
+                <div class="country-population">
+                  <p>${(country.total / 1000000).toLocaleString()}M</p>
+                </div>
+                <div class="country-name">
+                  <p>${country.countryName}</p>
+                </div>
+              `;
+              rowContainer.appendChild(countryContainer);
+              counter++;
+            });
+
+            // Append the last rowContainer if it has any children
+            if (rowContainer.children.length > 0) {
+              byCountryContainer.appendChild(rowContainer);
+            }
+
+            cardContainer.appendChild(byCountryContainer);
+
+            byTypeContainer.appendChild(headerContainer);
+            byTypeContainer.appendChild(cardContainer);
+
+            container.appendChild(byTypeContainer);
+          });
+        } catch (error) {
+          console.error("Error fetching population data:", error);
+        }
+      };
+
+      fetchData();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "population": [
+    {
+      "id": 1,
+      "type": "men",
+      "total": 212900000,
+      "byCountries": [
+        {
+          "countryId": 1,
+          "countryName": "Australia",
+          "total": 12840000
+        },
+        {
+          "countryId": 2,
+          "countryName": "Ghana",
+          "total": 16460000
+        },
+        {
+          "countryId": 3,
+          "countryName": "Indonesia",
+          "total": 139130000
+        },
+        {
+          "countryId": 4,
+          "countryName": "Kenya",
+          "total": 27320000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "women",
+      "total": 212900000,
+      "byCountries": [
+        {
+          "countryId": 1,
+          "countryName": "Australia",
+          "total": 12940000
+        },
+        {
+          "countryId": 2,
+          "countryName": "Ghana",
+          "total": 16380000
+        },
+        {
+          "countryId": 3,
+          "countryName": "Indonesia",
+          "total": 137230000
+        },
+        {
+          "countryId": 4,
+          "countryName": "Kenya",
+          "total": 27660000
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "youth",
+      "total": 172900000,
+      "byCountries": [
+        {
+          "countryId": 1,
+          "countryName": "Australia",
+          "total": 5710000
+        },
+        {
+          "countryId": 2,
+          "countryName": "Ghana",
+          "total": 14620000
+        },
+        {
+          "countryId": 3,
+          "countryName": "Indonesia",
+          "total": 82960000
+        },
+        {
+          "countryId": 4,
+          "countryName": "Kenya",
+          "total": 24420000
+        }
+      ]
+    }
+  ]
+}
