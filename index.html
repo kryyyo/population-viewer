@@ -61,14 +61,38 @@
 
               const countryContainer = document.createElement("div");
               countryContainer.classList.add("country-container");
-              countryContainer.innerHTML = `
-                <div class="country-population">
-                  <p>${(country.total / 1000000).toLocaleString()}M</p>
-                </div>
-                <div class="country-name">
-                  <p>${country.countryName}</p>
-                </div>
-              `;
+
+              const countryPopulation = document.createElement("div");
+              countryPopulation.classList.add("country-population");
+              const populationText = document.createElement("p");
+              populationText.textContent = `${(
+                country.total / 1000000
+              ).toLocaleString()}M`;
+              countryPopulation.appendChild(populationText);
+
+              const countryName = document.createElement("div");
+              countryName.classList.add("country-name");
+              const nameText = document.createElement("p");
+              nameText.textContent = country.countryName;
+              countryName.appendChild(nameText);
+
+              if (population.type === "men") {
+                countryContainer.style.backgroundColor = "#d7f5f3";
+                countryPopulation.style.backgroundColor = "#38b2ac";
+                countryName.style.color = "#38b2ac";
+              } else if (population.type === "women") {
+                countryContainer.style.backgroundColor = "#e9e0ff";
+                countryPopulation.style.backgroundColor = "#553c9a";
+                countryName.style.color = "#553c9a";
+              } else {
+                countryContainer.style.backgroundColor = "#cce6ff";
+                countryPopulation.style.backgroundColor = "#3182ce";
+                countryName.style.color = "#3182ce";
+              }
+
+              countryContainer.appendChild(countryPopulation);
+              countryContainer.appendChild(countryName);
+
               rowContainer.appendChild(countryContainer);
               counter++;
             });
